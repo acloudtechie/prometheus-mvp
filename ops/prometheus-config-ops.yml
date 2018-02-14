@@ -1,0 +1,95 @@
+# cf Prometheus Alerts
+- type: replace
+  path: /instance_groups/name=prometheus/jobs/name=cloudfoundry_alerts?/release
+  value: prometheus
+- type: replace
+  path: /instance_groups/name=prometheus/jobs/name=prometheus/properties/prometheus/rule_files/-
+  value: /var/vcap/jobs/cloudfoundry_alerts/*.alerts
+# cf Grafana Dashboards
+- type: replace
+  path: /instance_groups/name=grafana/jobs/name=cloudfoundry_dashboards?/release
+  value: prometheus
+- type: replace
+  path: /instance_groups/name=grafana/jobs/name=grafana/properties/grafana/prometheus/dashboard_files/-
+  value: /var/vcap/jobs/cloudfoundry_dashboards/*.json
+# Bosh Prometheus Alerts
+- type: replace
+  path: /instance_groups/name=prometheus/jobs/name=bosh_alerts?/release
+  value: prometheus
+- type: replace
+  path: /instance_groups/name=prometheus/jobs/name=prometheus/properties/prometheus/rule_files/-
+  value: /var/vcap/jobs/bosh_alerts/*.alerts
+# Bosh Grafana Dashboards
+- type: replace
+  path: /instance_groups/name=grafana/jobs/name=bosh_dashboards?/release
+  value: prometheus
+- type: replace
+  path: /instance_groups/name=grafana/jobs/name=grafana/properties/grafana/prometheus/dashboard_files/-
+  value: /var/vcap/jobs/bosh_dashboards/*.json
+
+# Prometheus Scrape Config
+- type: replace
+  path: /instance_groups/name=prometheus/jobs/name=prometheus/properties/prometheus/scrape_configs/-
+  value:
+    job_name: bosh
+    scrape_interval: 2m
+    scrape_timeout: 1m
+    static_configs:
+      - targets:
+        - localhost:9190
+# Service Discovery
+- type: replace
+  path: /instance_groups/name=prometheus/jobs/name=prometheus/properties/prometheus/scrape_configs/-
+  value:
+    job_name: bosh_tsdb
+    file_sd_configs:
+      - files:
+        - "/var/vcap/store/bosh_exporter/bosh_target_groups.json"
+    relabel_configs:
+      - source_labels:
+        - __meta_bosh_job_process_name
+        regex: bosh_tsdb_exporter
+        action: keep
+      - source_labels:
+        - __address__
+        regex: "(.*)"
+        target_label: __address__
+        replacement: "${1}:9194"
+- type: replace
+  path: /instance_groups/name=prometheus/jobs/name=prometheus/properties/prometheus/scrape_configs/-
+  value:
+    job_name: cf
+    scrape_interval: 4m
+    scrape_timeout: 2m
+    file_sd_configs:
+      - files:
+        - "/var/vcap/store/bosh_exporter/bosh_target_groups.json"
+    relabel_configs:
+      - source_labels:
+        - __meta_bosh_job_process_name
+        regex: cf_exporter
+        action: keep
+      - source_labels:
+        - __address__
+        regex: "(.*)"
+        target_label: __address__
+        replacement: "${1}:9193"
+- type: replace
+  path: /instance_groups/name=prometheus/jobs/name=prometheus/properties/prometheus/scrape_configs/-
+  value:
+    job_name: firehose
+    scrape_interval: 1m
+    scrape_timeout: 1m
+    file_sd_configs:
+      - files:
+        - "/var/vcap/store/bosh_exporter/bosh_target_groups.json"
+    relabel_configs:
+      - source_labels:
+        - __meta_bosh_job_process_name
+        regex: firehose_exporter
+        action: keep
+      - source_labels:
+        - __address__
+        regex: "(.*)"
+        target_label: __address__
+        replacement: "${1}:9186"

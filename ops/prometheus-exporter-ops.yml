@@ -1,0 +1,288 @@
+# Exporter jobs
+- type: replace
+  path: /instance_groups/name=prometheus/jobs/-
+  value:
+    name: bosh_exporter
+    release: prometheus
+    properties:
+      bosh_exporter:
+        bosh:
+          url: "((bosh_url))"
+          username: "((bosh_username))"
+          password: "((bosh_password))"
+          ca_cert: "((bosh_ca_cert))"
+        metrics:
+          environment: "((bosh_metrics_environment))"
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: pcf-pre1
+    azs:
+      - z1
+    instances: 1
+    vm_type: default
+    stemcell: default
+    networks:
+      - name: default
+    jobs:
+      - name: firehose_exporter
+        release: prometheus
+        properties:
+          firehose_exporter:
+            doppler:
+              url: wss://doppler.((pcf1_system_domain)):((pcf1_traffic_controller_external_port))
+              subscription_id: "((pcf1_metrics_environment))"
+              max_retry_count: 300
+            uaa:
+              url: https://uaa.((pcf1_system_domain))
+              client_id: firehose_exporter
+              client_secret: "((pcf1_uaa_clients_firehose_exporter_secret))"
+            metrics:
+              environment: "((pcf1_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+      - name: cf_exporter
+        release: prometheus
+        properties:
+          cf_exporter:
+            cf:
+              api_url: https://api.((pcf1_system_domain))
+              client_id: cf_exporter
+              client_secret: "((pcf1_uaa_clients_cf_exporter_secret))"
+              deployment_name: ((pcf1_metron_deployment_name))
+            metrics:
+              environment: "((pcf1_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: pcf-pre2
+    azs:
+      - z1
+    instances: 1
+    vm_type: default
+    stemcell: default
+    networks:
+      - name: default
+    jobs:
+      - name: firehose_exporter
+        release: prometheus
+        properties:
+          firehose_exporter:
+            doppler:
+              url: wss://doppler.((pcf2_system_domain)):((pcf2_traffic_controller_external_port))
+              subscription_id: "((pcf2_metrics_environment))"
+              max_retry_count: 300
+            uaa:
+              url: https://uaa.((pcf2_system_domain))
+              client_id: firehose_exporter
+              client_secret: "((pcf2_uaa_clients_firehose_exporter_secret))"
+            metrics:
+              environment: "((pcf2_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+      - name: cf_exporter
+        release: prometheus
+        properties:
+          cf_exporter:
+            cf:
+              api_url: https://api.((pcf2_system_domain))
+              client_id: cf_exporter
+              client_secret: "((pcf2_uaa_clients_cf_exporter_secret))"
+              deployment_name: ((pcf2_metron_deployment_name))
+            metrics:
+              environment: "((pcf2_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: pcf-pre3
+    azs:
+      - z1
+    instances: 1
+    vm_type: default
+    stemcell: default
+    networks:
+      - name: default
+    jobs:
+      - name: firehose_exporter
+        release: prometheus
+        properties:
+          firehose_exporter:
+            doppler:
+              url: wss://doppler.((pcf3_system_domain)):((pcf3_traffic_controller_external_port))
+              subscription_id: "((pcf3_metrics_environment))"
+              max_retry_count: 300
+            uaa:
+              url: https://uaa.((pcf3_system_domain))
+              client_id: firehose_exporter
+              client_secret: "((pcf3_uaa_clients_firehose_exporter_secret))"
+            metrics:
+              environment: "((pcf3_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+      - name: cf_exporter
+        release: prometheus
+        properties:
+          cf_exporter:
+            cf:
+              api_url: https://api.((pcf3_system_domain))
+              client_id: cf_exporter
+              client_secret: "((pcf3_uaa_clients_cf_exporter_secret))"
+              deployment_name: ((pcf3_metron_deployment_name))
+            metrics:
+              environment: "((pcf3_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: pcf-pre4
+    azs:
+      - z1
+    instances: 1
+    vm_type: default
+    stemcell: default
+    networks:
+      - name: default
+    jobs:
+      - name: firehose_exporter
+        release: prometheus
+        properties:
+          firehose_exporter:
+            doppler:
+              url: wss://doppler.((pcf4_system_domain)):((pcf4_traffic_controller_external_port))
+              subscription_id: "((pcf4_metrics_environment))"
+              max_retry_count: 300
+            uaa:
+              url: https://uaa.((pcf4_system_domain))
+              client_id: firehose_exporter
+              client_secret: "((pcf4_uaa_clients_firehose_exporter_secret))"
+            metrics:
+              environment: "((pcf4_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+      - name: cf_exporter
+        release: prometheus
+        properties:
+          cf_exporter:
+            cf:
+              api_url: https://api.((pcf4_system_domain))
+              client_id: cf_exporter
+              client_secret: "((pcf4_uaa_clients_cf_exporter_secret))"
+              deployment_name: ((pcf4_metron_deployment_name))
+            metrics:
+              environment: "((pcf4_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: pcf-pre5
+    azs:
+      - z1
+    instances: 1
+    vm_type: default
+    stemcell: default
+    networks:
+      - name: default
+    jobs:
+      - name: firehose_exporter
+        release: prometheus
+        properties:
+          firehose_exporter:
+            doppler:
+              url: wss://doppler.((pcf5_system_domain)):((pcf5_traffic_controller_external_port))
+              subscription_id: "((pcf5_metrics_environment))"
+              max_retry_count: 300
+            uaa:
+              url: https://uaa.((pcf5_system_domain))
+              client_id: firehose_exporter
+              client_secret: "((pcf5_uaa_clients_firehose_exporter_secret))"
+            metrics:
+              environment: "((pcf5_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+      - name: cf_exporter
+        release: prometheus
+        properties:
+          cf_exporter:
+            cf:
+              api_url: https://api.((pcf5_system_domain))
+              client_id: cf_exporter
+              client_secret: "((pcf5_uaa_clients_cf_exporter_secret))"
+              deployment_name: ((pcf5_metron_deployment_name))
+            metrics:
+              environment: "((pcf5_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: pcf-pre6
+    azs:
+      - z1
+    instances: 1
+    vm_type: default
+    stemcell: default
+    networks:
+      - name: default
+    jobs:
+      - name: firehose_exporter
+        release: prometheus
+        properties:
+          firehose_exporter:
+            doppler:
+              url: wss://doppler.((pcf6_system_domain)):((pcf6_traffic_controller_external_port))
+              subscription_id: "((pcf6_metrics_environment))"
+              max_retry_count: 300
+            uaa:
+              url: https://uaa.((pcf6_system_domain))
+              client_id: firehose_exporter
+              client_secret: "((pcf6_uaa_clients_firehose_exporter_secret))"
+            metrics:
+              environment: "((pcf6_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+      - name: cf_exporter
+        release: prometheus
+        properties:
+          cf_exporter:
+            cf:
+              api_url: https://api.((pcf6_system_domain))
+              client_id: cf_exporter
+              client_secret: "((pcf6_uaa_clients_cf_exporter_secret))"
+              deployment_name: ((pcf6_metron_deployment_name))
+            metrics:
+              environment: "((pcf6_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: pcf-pre7
+    azs:
+      - z1
+    instances: 1
+    vm_type: default
+    stemcell: default
+    networks:
+      - name: default
+    jobs:
+      - name: firehose_exporter
+        release: prometheus
+        properties:
+          firehose_exporter:
+            doppler:
+              url: wss://doppler.((pcf7_system_domain)):((pcf7_traffic_controller_external_port))
+              subscription_id: "((pcf7_metrics_environment))"
+              max_retry_count: 300
+            uaa:
+              url: https://uaa.((pcf7_system_domain))
+              client_id: firehose_exporter
+              client_secret: "((pcf7_uaa_clients_firehose_exporter_secret))"
+            metrics:
+              environment: "((pcf7_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))
+      - name: cf_exporter
+        release: prometheus
+        properties:
+          cf_exporter:
+            cf:
+              api_url: https://api.((pcf7_system_domain))
+              client_id: cf_exporter
+              client_secret: "((pcf7_uaa_clients_cf_exporter_secret))"
+              deployment_name: ((pcf7_metron_deployment_name))
+            metrics:
+              environment: "((pcf7_metrics_environment))"
+            skip_ssl_verify: ((skip_ssl_verify))           
