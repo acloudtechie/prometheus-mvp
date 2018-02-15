@@ -3,8 +3,7 @@ alertmanager_password:
 alertmanager_slack_api_url: 
 alertmanager_slack_channel: 
 bosh_url: 
-bosh_username: 
-bosh_password: 
+uaa_bosh_exporter_client_secret: 
 bosh_ca_cert: |
   -----BEGIN CERTIFICATE-----
  
