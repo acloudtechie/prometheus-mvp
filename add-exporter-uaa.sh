@@ -15,7 +15,7 @@ addExporterUaaUsers(){
         --name cf_exporter \
         --secret $3 \
         --authorized_grant_types client_credentials,refresh_token \
-        --authorities cloud_controller.admin
+        --authorities cloud_controller.global_auditor
 }
 
 #expecting a single string input parameter
