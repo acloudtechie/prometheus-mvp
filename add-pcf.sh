@@ -33,15 +33,15 @@ for (( c=1; c<=$envNum; c++ )) do
 
   echo -n "Enter pcf system domain (Ex: sys.example.com): [ENTER]: "
   read sysDomain
-  validateStringInput $sysDomain
+  #validateStringInput $sysDomain
 
   echo -n "Enter cf exporter secret: [ENTER]: "
   read cfExporterSecret
-  validateStringInput $cfExporterSecret
+  #validateStringInput $cfExporterSecret
 
   echo -n "Enter firehose exporter secret: [ENTER]: "
   read firehoseExporterSecret
-  validateStringInput $firehoseExporterSecret
+  #validateStringInput $firehoseExporterSecret
 
   cat >> ./${PARAM_FILE} <<EOL
 pcf${index}_metrics_environment: $pcfName

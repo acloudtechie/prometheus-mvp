@@ -79,15 +79,15 @@ EOL
 
     echo -n "Enter pcf system domain (Ex: sys.example.com): [ENTER]: "
     read sysDomain
-    validateStringInput $sysDomain
+    #validateStringInput $sysDomain
 
     echo -n "Enter cf exporter secret: [ENTER]: "
     read cfExporterSecret
-    validateStringInput $cfExporterSecret
+    #validateStringInput $cfExporterSecret
 
     echo -n "Enter firehose exporter secret: [ENTER]: "
     read firehoseExporterSecret
-    validateStringInput $firehoseExporterSecret
+    #validateStringInput $firehoseExporterSecret
 
     cat >> ./${PARAM_FILE} <<EOL
 pcf${c}_metrics_environment: $pcfName
