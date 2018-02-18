@@ -26,7 +26,6 @@ start=${temp:3:1}
 
 for (( c=1; c<=$envNum; c++ )) do
   index=$((c+start))
-  echo $index
 
   echo -n "Enter environment name: [ENTER]: "
   read pcfName
@@ -94,10 +93,5 @@ EOL
               environment: "((pcf${index}_metrics_environment))"
             skip_ssl_verify: ((skip_ssl_verify))
 EOL
-
   done
-
-else 
-   echo -e "\nAbort. Param file: ${PARAM_FILE} and/or exporter ops file: ./ops/${EXPORTER_OPS_FILE} already exist(s)."
-fi
 
