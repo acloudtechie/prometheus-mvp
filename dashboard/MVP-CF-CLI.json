@@ -46,7 +46,7 @@
             "#299c46"
           ],
           "datasource": null,
-          "format": "m",
+          "format": "short",
           "gauge": {
             "maxValue": 100,
             "minValue": 0,
@@ -72,7 +72,7 @@
           "maxDataPoints": 100,
           "nullPointMode": "connected",
           "nullText": null,
-          "postfix": "",
+          "postfix": "min",
           "postfixFontSize": "50%",
           "prefix": "",
           "prefixFontSize": "50%",
@@ -86,8 +86,8 @@
           "scopedVars": {
             "environment": {
               "selected": true,
-              "text": "Pcf-Pre-2",
-              "value": "Pcf-Pre-2"
+              "text": "plex-jackie",
+              "value": "plex-jackie"
             }
           },
           "span": 2,
@@ -100,7 +100,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "30*24*60*(1-$SLO/100)-((sum(count_over_time(firehose_value_metric_healthwatch_health_check_cli_command_success{environment=\"$environment\"}[30d])) - sum(sum_over_time(firehose_value_metric_healthwatch_health_check_cli_command_success{environment=\"$environment\"}[30d]))) * 5)",
+              "expr": "30*24*60*(1-$SLO/100)- avg(count_over_time(firehose_value_metric_healthwatch_health_check_cli_command_success{environment=\"$environment\"}[30d]) - sum_over_time(firehose_value_metric_healthwatch_health_check_cli_command_success{environment=\"$environment\"}[30d]))",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A"
@@ -111,18 +111,7 @@
           "title": "Error Budget (Rolling 30d)",
           "type": "singlestat",
           "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "Healthy",
-              "value": "1"
-            },
-            {
-              "op": "=",
-              "text": "Unhealthy",
-              "value": "0"
-            }
-          ],
+          "valueMaps": [],
           "valueName": "avg"
         },
         {
@@ -175,8 +164,8 @@
           "scopedVars": {
             "environment": {
               "selected": true,
-              "text": "Pcf-Pre-2",
-              "value": "Pcf-Pre-2"
+              "text": "plex-jackie",
+              "value": "plex-jackie"
             }
           },
           "span": 2,
@@ -269,8 +258,8 @@
           "scopedVars": {
             "environment": {
               "selected": true,
-              "text": "Pcf-Pre-2",
-              "value": "Pcf-Pre-2"
+              "text": "plex-jackie",
+              "value": "plex-jackie"
             }
           },
           "span": 2,
@@ -363,8 +352,8 @@
           "scopedVars": {
             "environment": {
               "selected": true,
-              "text": "Pcf-Pre-2",
-              "value": "Pcf-Pre-2"
+              "text": "plex-jackie",
+              "value": "plex-jackie"
             }
           },
           "span": 2,
@@ -457,8 +446,8 @@
           "scopedVars": {
             "environment": {
               "selected": true,
-              "text": "Pcf-Pre-2",
-              "value": "Pcf-Pre-2"
+              "text": "plex-jackie",
+              "value": "plex-jackie"
             }
           },
           "span": 2,
@@ -551,8 +540,8 @@
           "scopedVars": {
             "environment": {
               "selected": true,
-              "text": "Pcf-Pre-2",
-              "value": "Pcf-Pre-2"
+              "text": "plex-jackie",
+              "value": "plex-jackie"
             }
           },
           "span": 2,
@@ -739,7 +728,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "30*24*60*(1-$SLO/100)-((sum(count_over_time(firehose_value_metric_healthwatch_health_check_cli_command_success{environment=\"$environment\"}[30d])) - sum(sum_over_time(firehose_value_metric_healthwatch_health_check_cli_command_success{environment=\"$environment\"}[30d]))) * 5)",
+              "expr": "30*24*60*(1-$SLO/100)- avg(count_over_time(firehose_value_metric_healthwatch_health_check_cli_command_success{environment=\"$environment\"}[30d]) - sum_over_time(firehose_value_metric_healthwatch_health_check_cli_command_success{environment=\"$environment\"}[30d]))",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -968,8 +957,8 @@
         "allValue": null,
         "current": {
           "tags": [],
-          "text": "Pcf-Pre-2",
-          "value": "Pcf-Pre-2"
+          "text": "plex-jackie",
+          "value": "plex-jackie"
         },
         "datasource": "prometheus",
         "hide": 0,
@@ -991,7 +980,7 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
+          "selected": true,
           "text": "99.9",
           "value": "99.9"
         },
@@ -1062,6 +1051,6 @@
     ]
   },
   "timezone": "",
-  "title": "MVP: CF CLI Monitoring",
-  "version": 16
+  "title": "MVP: CF CLI Monitoring SLI",
+  "version": 23
 }

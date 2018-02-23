@@ -1,0 +1,44 @@
+alertmanager_mesh_password: 
+alertmanager_password: 
+alertmanager_slack_api_url: 
+alertmanager_slack_channel: 
+bosh_url: 
+uaa_bosh_exporter_client_secret: 
+bosh_ca_cert: |
+  -----BEGIN CERTIFICATE-----
+ 
+  -----END CERTIFICATE-----
+bosh_metrics_environment: Bosh
+grafana_password: 
+grafana_secret_key: 
+postgres_grafana_password: 
+prometheus_password: 
+probe_endpoints:
+- 
+skip_ssl_verify: true
+pcf1_metrics_environment: test
+pcf1_metron_deployment_name: cf
+pcf1_system_domain: 
+pcf1_traffic_controller_external_port: 443
+pcf1_uaa_clients_cf_exporter_secret: 
+pcf1_uaa_clients_firehose_exporter_secret: 
+pcf2_metrics_environment: test2
+pcf2_metron_deployment_name: cf
+pcf2_system_domain: 
+pcf2_traffic_controller_external_port: 443
+pcf2_uaa_clients_cf_exporter_secret: 
+pcf2_uaa_clients_firehose_exporter_secret: 
+\n
+pcf3_metrics_environment: test3
+pcf3_metron_deployment_name: cf
+pcf3_system_domain: 
+pcf3_traffic_controller_external_port: 443
+pcf3_uaa_clients_cf_exporter_secret: 
+pcf3_uaa_clients_firehose_exporter_secret: 
+\n
+pcf4_metrics_environment: test4
+pcf4_metron_deployment_name: cf
+pcf4_system_domain: 
+pcf4_traffic_controller_external_port: 443
+pcf4_uaa_clients_cf_exporter_secret: 
+pcf4_uaa_clients_firehose_exporter_secret: 
